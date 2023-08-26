@@ -1,3 +1,31 @@
+
+#installation 
+
+
+http://localhost/learning/seo-panel/install/
+
+Go to phpmyadmin and put below database name
+
+Database username:	 new_amit_seo
+Database password:		root
+
+
+
+
+
+2nd step
+
+
+
+Next click on proceed to admin login
+
+Output
+
+
+
+![image](https://github.com/amitdevopsschool/seo-panel/assets/79695993/7054659d-4b77-45b4-8938-bf30f89e49e9)
+
+
 # Seo Panel - World's first SEO Control Panel for Multiple Websites
 
 #Login Passowrd
