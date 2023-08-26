@@ -1,5 +1,10 @@
 # Seo Panel - World's first SEO Control Panel for Multiple Websites
 
+#Login Passowrd
+
+usernmae :-  spadmin
+password :- spadmin
+
 An Award Winning open source seo control panel for managing search engine optimization of your websites
 
 ## Requirements
