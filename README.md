@@ -6,6 +6,10 @@ http://localhost/learning/seo-panel/install/
 
 Go to phpmyadmin and put below database name
 
+first go to phpmyadmin and create new database 
+new_amit_seo
+
+
 Database username:	 new_amit_seo
 Database password:		root
 
