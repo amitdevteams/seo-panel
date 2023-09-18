@@ -8,7 +8,7 @@
 			<input type="hidden" name="sec" value="login">
 			<input type="hidden" name="red_referer" value="<?php echo $post['red_referer']?>">
 			<div class="form-group">
-				<label for="email"><?php echo $spText['login']['Username']?>:</label> 
+				<label for="email"><?php echo $spText['login']['Email']?>:</label> 
 				<input type="text" class="form-control" id="userName" name="userName" required="required">
 				<?php echo $errMsg['userName']?>
 			</div>
