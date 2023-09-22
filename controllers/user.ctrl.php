@@ -62,22 +62,17 @@ class UserController extends Controller{
 							$activationStatus = false;
 						}
 					}
-					
 					// check for user status and activation
 					if($userInfo['status'] && $activationStatus){
-					    
     					// if login after first installation
                 	    if (!empty($_POST['lang_code']) && ($_POST['lang_code'] != 'en')) {
                 	    	$_POST['lang_code'] = addslashes($_POST['lang_code']);
                 	        $sql = "UPDATE `settings` SET set_val='".addslashes($_POST['lang_code'])."' WHERE set_name='SP_DEFAULTLANG'";
                 	        $this->db->query($sql);
-                	        
                 	        $sql = "UPDATE users SET lang_code='".addslashes($_POST['lang_code'])."' WHERE id=1";
                 	        $this->db->query($sql);
-                	        
                 	        $userInfo['lang_code'] = $_POST['lang_code'];
                 	    }
-                	    
                 	    // update timezone
                 	    if (!empty($_POST['time_zone'])) {
                 	    	$sql = "UPDATE `settings` SET set_val='".addslashes($_POST['time_zone'])."' WHERE set_name='SP_TIME_ZONE'";
@@ -444,9 +439,9 @@ class UserController extends Controller{
 	
 	# func to change status
 	function __changeStatus($userId, $status){
+		
 		$userId = intval($userId);
-		$confirmStr = !empty($status) ? ",confirm=1" : "";
-		$sql = "update users set status=$status $confirmStr where id=$userId";
+		$sql = "update users set status=$status where id=$userId";
 		$this->db->query($sql);
 		
 		# deaactivate all websites under this user
@@ -562,10 +557,10 @@ class UserController extends Controller{
 		if(!$this->validate->flagErr){
 			if (!$this->__checkUserName($userInfo['userName'])) {
 				if (!$this->__checkEmail($userInfo['email'])) {
-					$sql = "insert into users(utype_id,username,password,first_name,last_name,email,created,status, expiry_date, confirm) 
+					$sql = "insert into users(utype_id,username,password,first_name,last_name,email,created,status, expiry_date) 
 						values($userTypeId,'".addslashes($userInfo['userName'])."','".md5($userInfo['password'])."'
 						,'".addslashes($userInfo['firstName'])."', '".addslashes($userInfo['lastName'])."'
-						,'".addslashes($userInfo['email'])."',UNIX_TIMESTAMP(),$userStatus, {$userInfo['expiry_date']}, 1)";
+						,'".addslashes($userInfo['email'])."',UNIX_TIMESTAMP(),$userStatus, {$userInfo['expiry_date']})";
 					$this->db->query($sql);
 					
 					// if render results
