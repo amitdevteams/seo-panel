@@ -10,12 +10,10 @@
 		if (!empty($_GET['failed'])) {
 			showErrorMsg($spTextSubscription['internal-error-payment'], false);
 		}
-		
 		if (!empty($_GET['cancel'])) {
 			showErrorMsg($spTextSubscription["Your transaction cancelled"], false);
 		}
 		?>
-		
 		<?php
 		// if subscription plugin is active
 		if ($subscriptionActive & !empty($userTypeList)){
@@ -27,7 +25,7 @@
 					foreach ($userTypeList as $userTypeInfo) {
 						$selected = ($post['utype_id'] == $userTypeInfo['id']) ? "selected" : "";
 						$typeLabel = ucfirst($userTypeInfo['user_type']) . " - ";
-						
+
 						// if user type have price
 						if ($userTypeInfo['price'] > 0) {
 							$typeLabel .= $currencyList[SP_PAYMENT_CURRENCY]['symbol'] . $userTypeInfo['price'] . "/" . $spText['label']['Monthly'];

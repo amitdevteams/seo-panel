@@ -62,22 +62,17 @@ class UserController extends Controller{
 							$activationStatus = false;
 						}
 					}
-					
 					// check for user status and activation
 					if($userInfo['status'] && $activationStatus){
-					    
     					// if login after first installation
                 	    if (!empty($_POST['lang_code']) && ($_POST['lang_code'] != 'en')) {
                 	    	$_POST['lang_code'] = addslashes($_POST['lang_code']);
                 	        $sql = "UPDATE `settings` SET set_val='".addslashes($_POST['lang_code'])."' WHERE set_name='SP_DEFAULTLANG'";
                 	        $this->db->query($sql);
-                	        
                 	        $sql = "UPDATE users SET lang_code='".addslashes($_POST['lang_code'])."' WHERE id=1";
                 	        $this->db->query($sql);
-                	        
                 	        $userInfo['lang_code'] = $_POST['lang_code'];
                 	    }
-                	    
                 	    // update timezone
                 	    if (!empty($_POST['time_zone'])) {
                 	    	$sql = "UPDATE `settings` SET set_val='".addslashes($_POST['time_zone'])."' WHERE set_name='SP_TIME_ZONE'";

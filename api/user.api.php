@@ -120,19 +120,16 @@ class UserAPI extends Seopanel{
 			
 			$userInfo['oldName'] = $userInfo['username'];
 			$userInfo['oldEmail'] = $userInfo['email'];
-			
 			// loop through inputs
 			foreach ($info as $key => $val) {
 				$userInfo[$key] = $val;
 			}
-			
 			// updte user info
 			$userInfo['userName'] = $userInfo['username'];
 			$userInfo['firstName'] = $userInfo['first_name'];
 			$userInfo['lastName'] = $userInfo['last_name'];
 			$userInfo['confirmPassword'] = $userInfo['password'];
 			$return = $this->ctrler->updateUser($userInfo, false);
-			
 			// if user creation is success
 			if ($return[0] == 'success') {
 				$returnInfo['response'] = 'success';
@@ -141,13 +138,10 @@ class UserAPI extends Seopanel{
 				$returnInfo['response'] = 'Error';
 				$returnInfo['error_msg'] = $return[1];
 			}
-			
 		} else {
-
 			$returnInfo['response'] = 'Error';
 			$returnInfo['error_msg'] = "The invalid user id provided";
 		}
-		
 		return 	$returnInfo;
 		
 	}
