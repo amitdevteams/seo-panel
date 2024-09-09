@@ -155,13 +155,18 @@ $colCount = ($baseColCount * 3);
 				?>
 				<tr>
 					<td>
-						<?php echo $listInfo['name']; ?>
+						<a href="<?php echo $listInfo['url']?>" target="_blank">
+							<?php echo $listInfo['name']; ?>
+						</a>
 					</td>
 					<td>
-						<a href="javascript:void(0)"><?php echo $websiteList[$listInfo['website_id']]['name']; ?></a>
+						<?php echo $websiteList[$listInfo['website_id']]['name']; ?>
 					</td>
 					<td>
-						<a href="javascript:void(0)"><?php echo $serviceList[$listInfo['type']]['label']; ?></a>
+						<a href="javascript:void(0)">
+							<i class="fab fa-<?php echo $serviceList[$listInfo['type']]['icon']?>"></i>
+							<?php echo $serviceList[$listInfo['type']]['label']; ?>
+						</a>
 					</td>
 					<?php
 					foreach ($colList as $colName => $colVal){
@@ -189,8 +194,8 @@ $colCount = ($baseColCount * 3);
 								$rankDiffTxt = "";
 							}
 		
-							$prevRankLink = scriptAJAXLinkHrefDialog($pageScriptPath, 'content', $scriptLink . "&sec=viewDetailedReports", $prevRank);
-							$currRankLink = scriptAJAXLinkHrefDialog($pageScriptPath, 'content', $scriptLink . "&sec=viewDetailedReports", $currRank);
+							$prevRankLink = scriptAJAXLinkHrefDialog($pageScriptPath, 'content', $scriptLink . "&sec=viewDetailedReports", round($prevRank, 2));
+							$currRankLink = scriptAJAXLinkHrefDialog($pageScriptPath, 'content', $scriptLink . "&sec=viewDetailedReports", round($currRank, 2));
 							$graphLink = scriptAJAXLinkHrefDialog($pageScriptPath, 'content', $scriptLink . "&sec=viewGraphReports&attr_type=$colName", '&nbsp;', 'graphicon');
 							
 							// if pdf report remove links

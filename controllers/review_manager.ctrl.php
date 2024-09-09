@@ -357,14 +357,19 @@ class ReviewManagerController extends ReviewBase{
 						
 					if (!empty($matches[1])) {
 						$result['status'] = 1;
-						$result['rating'] = formatNumber($matches[1]);
+						$result['rating'] = round(formatNumber($matches[1]), 2);
 					}	
 				}
 				
+				// if not found any details
+				if (!$result['status']) {
+				    $result['msg'] = "Review page details not found.";
+				} else {
+				    $result['msg'] = "Review page details fetched successfully.";
+				}
 			} else {
 				$result['msg'] = $smContentInfo['errmsg'];
 			}
-			
 		}
 		
 		return $result;
