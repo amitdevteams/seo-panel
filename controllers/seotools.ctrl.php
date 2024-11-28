@@ -28,9 +28,9 @@ class SeoToolsController extends Controller{
 	function index($info=[]){
 		$this->layout = "default";
 		if(isAdmin()){
-			$sql = "select * from seotools where status=1";	
+			$sql = "SELECT * FROM seotools WHERE status IN (1,2,3,4,5,6,7,8,9,10,11)";	
 		}else{
-			$sql = "select * from seotools where status=1 and user_access=1";			
+			$sql = "SELECT * FROM seotools WHERE status IN (1,2,3,4,5,6,7,8,9,10,11) AND user_access IN (1,2,3,4,5,6,7,8,9,10,11)";			
 		}
 		$sql .= " order by priority, id";
 		
@@ -76,46 +76,107 @@ class SeoToolsController extends Controller{
 			
 			case "sitemap-generator":
 				$defaultScript = "sitemap.php";
+				
 				break;
 				
 		    case "site-auditor":
-				$defaultScript = "siteauditor.php";
-				break;
+				// $defaultScript = "siteauditor.php";
 				
+				$seoToolInfo = $this->__getSeoToolInfo('site-auditor', 'url_section');
+				if($seoToolInfo['status'] == 2){					
+					$info['menu_sec'] = 'site-auditor';
+					$defaultScript = "siteauditor.php";
+					$defaultArgs = empty($defaultArgs) ? "sec=" : $defaultArgs;	
+				}
+				break;
 			case "rank-checker":
-				$defaultScript = "rank.php";
+				// $defaultScript = "rank.php";
+				$seoToolInfo = $this->__getSeoToolInfo('rank-checker', 'url_section');
+				if($seoToolInfo['status'] == 3){					
+					$info['menu_sec'] = 'rank-checker';
+					$defaultScript = "rank.php";
+					$defaultArgs = empty($defaultArgs) ? "sec=" : $defaultArgs;	
+				}
 				break;
 				
 			case "backlink-checker":
-				$defaultScript = "backlinks.php";
+				// $defaultScript = "backlinks.php";
+				$seoToolInfo = $this->__getSeoToolInfo('backlink-checker', 'url_section');
+				if($seoToolInfo['status'] == 4){					
+					$info['menu_sec'] = 'backlink-checker';
+					$defaultScript = "backlinks.php";
+					$defaultArgs = empty($defaultArgs) ? "sec=" : $defaultArgs;	
+				}
 				break;
 				
 			case "directory-submission":
-				$defaultScript = "directories.php";
+				// $defaultScript = "directories.php";
+				$seoToolInfo = $this->__getSeoToolInfo('directory-submission', 'url_section');
+				if($seoToolInfo['status'] == 5){					
+					$info['menu_sec'] = 'directory-submission';
+					$defaultScript = "directories.php";
+					$defaultArgs = empty($defaultArgs) ? "sec=" : $defaultArgs;	
+				}
 				break;
 				
 			case "saturation-checker":
-				$defaultScript = "saturationchecker.php";
+				// $defaultScript = "saturationchecker.php";
+				$seoToolInfo = $this->__getSeoToolInfo('saturation-checker', 'url_section');
+				if($seoToolInfo['status'] == 6){					
+					$info['menu_sec'] = 'saturation-checker';
+					$defaultScript = "saturationchecker.php";
+					$defaultArgs = empty($defaultArgs) ? "sec=" : $defaultArgs;	
+				}
 				break;
 				
 			case "pagespeed":
-				$defaultScript = "pagespeed.php";
+				// $defaultScript = "pagespeed.php";
+				$seoToolInfo = $this->__getSeoToolInfo('pagespeed', 'url_section');
+				if($seoToolInfo['status'] == 7){					
+					$info['menu_sec'] = 'pagespeed';
+					$defaultScript = "pagespeed.php";
+					$defaultArgs = empty($defaultArgs) ? "sec=" : $defaultArgs;	
+				}
 				break;
 				
 			case "webmaster-tools":
-				$defaultScript = "webmaster-tools.php";
+				// $defaultScript = "webmaster-tools.php";
+				$seoToolInfo = $this->__getSeoToolInfo('webmaster-tools', 'url_section');
+				if($seoToolInfo['status'] == 8){					
+					$info['menu_sec'] = 'webmaster-tools';
+					$defaultScript = "webmaster-tools.php";
+					$defaultArgs = empty($defaultArgs) ? "sec=" : $defaultArgs;	
+				}
 				break;
 				
 			case "sm-checker":
-				$defaultScript = "social_media.php";
+				// $defaultScript = "social_media.php";
+				$seoToolInfo = $this->__getSeoToolInfo('sm-checker', 'url_section');
+				if($seoToolInfo['status'] == 9){					
+					$info['menu_sec'] = 'sm-checker';
+					$defaultScript = "social_media.php";
+					$defaultArgs = empty($defaultArgs) ? "sec=" : $defaultArgs;	
+				}
 				break;
 				
 			case "review-manager":
-				$defaultScript = "review.php";
+				// $defaultScript = "review.php";
+				$seoToolInfo = $this->__getSeoToolInfo('review-manager', 'url_section');
+				if($seoToolInfo['status'] == 11){					
+					$info['menu_sec'] = 'review-manager';
+					$defaultScript = "review.php";
+					$defaultArgs = empty($defaultArgs) ? "sec=" : $defaultArgs;	
+				}
 				break;
 				
 			case "web-analytics":
-			    $defaultScript = "analytics.php";
+			    // $defaultScript = "analytics.php";
+				$seoToolInfo = $this->__getSeoToolInfo('web-analytics', 'url_section');
+				if($seoToolInfo['status'] == 10){					
+					$info['menu_sec'] = 'web-analytics';
+					$defaultScript = "analytics.php";
+					$defaultArgs = empty($defaultArgs) ? "sec=" : $defaultArgs;	
+				}
 			    break;
 
 			default:
@@ -123,7 +184,7 @@ class SeoToolsController extends Controller{
 				if($seoToolInfo['status'] == 1){					
 					$info['menu_sec'] = 'keyword-position-checker';
 					$defaultScript = "reports.php";
-					$defaultArgs = empty($defaultArgs) ? "sec=reportsum" : $defaultArgs;	
+					$defaultArgs = empty($defaultArgs) ? "sec=" : $defaultArgs;	
 				}
 		}	
 		
